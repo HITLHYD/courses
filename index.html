@@ -1,0 +1,552 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>HITL Private Limited — Courses & Training</title>
+  <style>
+    :root {
+      --red: #ff2a2a;
+      --gold: #FFD700;
+      --maxw: 1200px;
+      font-family: 'Segoe UI', Roboto, sans-serif;
+    }
+    body {
+      margin: 0;
+      background: #000;
+      color: white;
+      line-height: 1.5;
+    }
+    a { color: white; text-decoration: none; }
+    a:hover { color: var(--red); }
+
+    .container { max-width: var(--maxw); margin: 0 auto; padding: 20px; }
+
+    header { text-align: center; margin-bottom: 15px; }
+    .company-name {
+      font-size: clamp(40px, 5vw, 70px);
+      font-weight: 900;
+      color: var(--red);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    .company-subtext {
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: var(--gold);
+      margin-top: 5px;
+    }
+
+    /* Placement Scroller */
+    .placement-title {
+      text-align: center;
+      font-size: 1.6rem;
+      color: var(--red);
+      font-weight: 800;
+      margin-top: 10px;
+    }
+    .scroller {
+      white-space: nowrap;
+      overflow: hidden;
+      margin: 10px 0 15px;
+      border-top: 1px solid rgba(255,255,255,0.2);
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+    }
+    .scroll-content {
+      display: inline-block;
+      padding: 14px 0;
+      font-size: 1.3rem;
+      font-weight: 700;
+      animation: scroll 15s linear infinite;
+    }
+    @keyframes scroll {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+
+    /* Benefits Section */
+    .benefits {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 12px;
+      padding: 20px;
+      margin: 20px 0;
+    }
+    .benefits h2 {
+      text-align: center;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+    .benefits ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .benefits li {
+      margin: 8px 0;
+    }
+    .benefits li::before {
+      content: "✅";
+      margin-right: 8px;
+      color: var(--gold);
+    }
+    .note {
+      text-align: center;
+      margin: 15px 0;
+      font-weight: 600;
+      color: var(--gold);
+      background: rgba(255,255,255,0.1);
+      padding: 8px;
+      border-radius: 10px;
+    }
+
+    /* DUSSERA OFFER Animation */
+    @keyframes colorChange {
+      0% { color: #ff0; }
+      25% { color: #f0f; }
+      50% { color: #0ff; }
+      75% { color: #0f0; }
+      100% { color: #ff0; }
+    }
+    .offer {
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin: 15px 0;
+      animation: colorChange 3s linear infinite;
+    }
+    .offer span {
+      display: block;
+      font-size: 1.2rem;
+      margin-top: 5px;
+      animation: colorChange 3s linear infinite;
+    }
+
+    /* Courses */
+    .courses h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin: 20px 0;
+    }
+    .course-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    .course-item {
+      background: rgba(255,255,255,0.05);
+      padding: 20px;
+      border-radius: 14px;
+      border: 2px solid rgba(255,255,255,0.3);
+      transition: 0.3s;
+    }
+    .course-item:hover {
+      border-color: var(--red);
+      box-shadow: 0 0 15px rgba(255,42,42,0.6);
+      transform: scale(1.03);
+    }
+    .course-name { font-weight: bold; font-size: 1.3rem; margin-bottom: 6px; }
+    .course-price { font-size: 1rem; color: var(--gold); font-weight: 700; margin-bottom: 6px; }
+    .course-desc { font-size: 0.95rem; margin-bottom: 6px; }
+    .course-cert { font-size: 0.85rem; color: var(--red); margin-bottom: 8px; font-weight: 600; }
+    .btn-row { display: flex; gap: 10px; flex-wrap: wrap; }
+    .enroll-btn, .register-btn {
+      flex: 1;
+      background: var(--red);
+      border: none;
+      color: white;
+      padding: 8px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: 0.2s;
+      text-align: center;
+    }
+    .register-btn { background: var(--gold); color: black; }
+    .enroll-btn:hover { background: #ff5151; transform: scale(1.08); }
+    .register-btn:hover { background: #ffe55c; transform: scale(1.08); }
+
+    /* WhatsApp Floating */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #25d366;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.5);
+      cursor: pointer;
+      z-index: 1000;
+      transition: transform 0.2s;
+    }
+    .whatsapp-float:hover { transform: scale(1.1); }
+    .whatsapp-float img { width: 32px; height: 32px; }
+
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.2);
+      text-align: center;
+      margin-top: 30px;
+      padding: 20px 0;
+      color: rgba(255,255,255,0.85);
+    }
+    .socials a { margin: 0 8px; }
+  </style>
+</head>
+<body>
+<div class="container">
+  <!-- HEADER -->
+  <header>
+    <div class="company-name">HITL Private Limited</div>
+    <div class="company-subtext">
+      <b>An ISO 9001:2015 Certified Organization</b><br>
+      <b>Regd. under Ministry of MSME, Govt. of India</b>
+    </div>
+  </header>
+
+  <!-- PLACEMENTS SCROLL -->
+  <div class="placement-title">Our Students Are Placed In</div>
+  <div class="scroller">
+    <div class="scroll-content">
+      Amazon • Cognizant • Capgemini • Wipro • Tech Mahindra • Infosys • Examity • BS Technotronix • Skoda • Hyundai • Foxconn • Teleperformance • Jarsh Electronics • UNIO Labs
+    </div>
+  </div>
+
+  <!-- BENEFITS -->
+  <div class="benefits">
+    <h2 >Benefits of Joining HITL</h2>
+    <ul>
+      <li>You will get Course Completion Certificate</li>
+      <li>Live Classes with Industrial Mentors</li>
+      <li>Included Skill Development Programs</li>
+      <li>Mock Interviews & HR Interaction</li>
+      <li>Resume Building Sessions</li>
+      <li>Profile Building Sessions</li>
+      <li>100% Job Assistance</li>
+      <li>24/7 Support</li>
+    </ul>
+  </div>
+
+  <div class="note">After payment share your screenshot to our WhatsApp number(9553650061) without fail.</div>
+
+  <!-- DUSSERA OFFER -->
+  <div class="offer">
+    DIWALI OFFER – Flat 20% Discount on all courses
+    <span>Offer ends on 22nd OCTOBER, 2025</span>
+  </div>
+
+  <!-- COURSES -->
+  <section class="courses">
+    <h2>Our Courses</h2>
+    <div class="course-list">
+
+      <!-- Programming & Software -->
+      <div class="course-item">
+        <div class="course-name">C Programming</div>
+        <div class="course-price">Rs. 1999/-</div>
+        <div class="course-desc">Learn core C concepts, memory management & problem solving.</div>
+        <div class="course-cert">Certified Course – Certificate Provided</div>
+        <div class="btn-row">
+          <button class="enroll-btn" onclick="enroll('C Programming')">Enroll</button>
+          <button class="register-btn" onclick="registerUPI(999)">Register Now</button>
+        </div>
+      </div>
+
+      <div class="course-item">
+        <div class="course-name">Python</div>
+        <div class="course-price">Rs. 4999/-</div>
+        <div class="course-desc">Master Python for automation, AI, web apps & data science.</div>
+        <div class="course-cert">Certified Course – Certificate Provided</div>
+        <div class="btn-row">
+          <button class="enroll-btn" onclick="enroll('Python')">Enroll</button>
+          <button class="register-btn" onclick="registerUPI(2499)">Register Now</button>
+        </div>
+      </div>
+
+      <div class="course-item">
+        <div class="course-name">Java</div>
+        <div class="course-price">Rs. 4999/-</div>
+        <div class="course-desc">OOP, APIs & enterprise-level app development.</div>
+        <div class="course-cert">Certified Course – Certificate Provided</div>
+        <div class="btn-row">
+          <button class="enroll-btn" onclick="enroll('Java')">Enroll</button>
+          <button class="register-btn" onclick="registerUPI(2499)">Register Now</button>
+        </div>
+      </div>
+
+      <div class="course-item">
+        <div class="course-name">Python Full Stack</div>
+        <div class="course-price">Rs. 14999/-</div>
+        <div class="course-desc">Front-End + Back-End + Databases using Python frameworks.</div>
+        <div class="course-cert">Certified Course – Certificate Provided</div>
+        <div class="btn-row">
+          <button class="enroll-btn" onclick="enroll('Python Full Stack')">Enroll</button>
+          <button class="register-btn" onclick="registerUPI(7999)">Register Now</button>
+        </div>
+      </div>
+
+      <div class="course-item">
+        <div class="course-name">Java Full Stack</div>
+        <div class="course-price">Rs. 14999/-</div>
+        <div class="course-desc">End-to-end Java development with Spring Boot & React.</div>
+        <div class="course-cert">Certified Course – Certificate Provided</div>
+        <div class="btn-row">
+          <button class="enroll-btn" onclick="enroll('Java Full Stack')">Enroll</button>
+          <button class="register-btn" onclick="registerUPI(7999)">Register Now</button>
+        </div>
+      </div>
+
+      
+
+      <div class="course-item">
+        <div class="course-name">Web Development</div>
+        <div class="course-price">Rs. 12999/-</div>
+        <div class="course-desc">HTML, CSS, Java Script.</div>
+        <div class="course-cert">Certified Course – Certificate Provided</div>
+        <div class="btn-row">
+          <button class="enroll-btn" onclick="enroll('Web Development')">Enroll</button>
+          <button class="register-btn" onclick="registerUPI(5999)">Register Now</button>
+        </div>
+      </div>
+
+      <!-- Data & AI -->
+      <div class="course-item">
+        <div class="course-name">Data Analytics</div>
+        <div class="course-price">Rs. 14999/-</div>
+        <div class="course-desc">Excel, SQL, PowerBI, Python data analysis & visualization.</div>
+        <div class="course-cert">Certified Course – Certificate Provided</div>
+        <div class="btn-row">
+          <button class="enroll-btn" onclick="enroll('Data Analytics')">Enroll</button>
+          <button class="register-btn" onclick="registerUPI(6999)">Register Now</button>
+        </div>
+      </div>
+
+      <div class="course-item">
+        <div class="course-name">Machine Learning</div>
+        <div class="course-price">Rs. 14999/-</div>
+        <div class="course-desc">ML models, sklearn, deep learning foundations.</div>
+        <div class="course-cert">Certified Course – Certificate Provided</div>
+        <div class="btn-row">
+          <button class="enroll-btn" onclick="enroll('Machine Learning')">Enroll</button>
+          <button class="register-btn" onclick="registerUPI(7999)">Register Now</button>
+        </div>
+      </div>
+
+      <div class="course-item">
+        <div class="course-name">Data Science</div>
+        <div class="course-price">Rs. 21999/-</div>
+        <div class="course-desc">Learn data science concepts, statistics, Python & ML.</div>
+        <div class="course-cert">Certified Course – Certificate Provided</div>
+        <div class="btn-row">
+          <button class="enroll-btn" onclick="enroll('Data Science')">Enroll</button>
+          <button class="register-btn" onclick="registerUPI(9999)">Register Now</button>
+        </div>
+      </div>
+
+      <div class="course-item">
+        <div class="course-name">Artificial Intelligence</div>
+        <div class="course-price">Rs. 24999/-</div>
+        <div class="course-desc">AI, LLMs, Agentic AI and Generative AI concepts.</div>
+        <div class="course-cert">Certified Course – Certificate Provided</div>
+        <div class="btn-row">
+          <button class="enroll-btn" onclick="enroll('Artificial Intelligence')">Enroll</button>
+          <button class="register-btn" onclick="registerUPI(7999)">Register Now</button>
+        </div>
+      </div>
+
+      <!-- Cloud -->
+      <div class="course-item">
+        <div class="course-name">Cloud AWS</div>
+        <div class="course-price">Rs. 29999/-</div>
+        <div class="course-desc">Cloud architecture & services on AWS with hands-on labs.</div>
+        <div class="course-cert">Certified Course – Certificate Provided</div>
+        <div class="btn-row">
+          <button class="enroll-btn" onclick="enroll('Cloud AWS')">Enroll</button>
+          <button class="register-btn" onclick="registerUPI(14999)">Register Now</button>
+        </div>
+      </div>
+
+      <div class="course-item">
+        <div class="course-name">Cyber Security</div>
+        <div class="course-price">Rs. 34999/-</div>
+        <div class="course-desc">Cloud architecture & services on AWS with hands-on labs.</div>
+        <div class="course-cert">Certified Course – Certificate Provided</div>
+        <div class="btn-row">
+          <button class="enroll-btn" onclick="enroll('Cyber Security')">Enroll</button>
+          <button class="register-btn" onclick="registerUPI(14999)">Register Now</button>
+        </div>
+      </div>
+
+
+      <div class="course-item">
+        <div class="course-name">Cloud Azure</div>
+        <div class="course-price">Rs. 29999/-</div>
+        <div class="course-desc">Cloud architecture & services on Azure with hands-on labs.</div>
+        <div class="course-cert">Certified Course – Certificate Provided</div>
+        <div class="btn-row">
+          <button class="enroll-btn" onclick="enroll('Cloud Azure')">Enroll</button>
+          <button class="register-btn" onclick="registerUPI(14999)">Register Now</button>
+        </div>
+      </div>
+
+      <div class="course-item">
+        <div class="course-name">Cloud Oracle</div>
+        <div class="course-price">Rs. 29999/-</div>
+        <div class="course-desc">Cloud architecture & services on Oracle Cloud with hands-on labs.</div>
+        <div class="course-cert">Certified Course – Certificate Provided</div>
+        <div class="btn-row">
+          <button class="enroll-btn" onclick="enroll('Cloud Oracle')">Enroll</button>
+          <button class="register-btn" onclick="registerUPI(14999)">Register Now</button>
+        </div>
+      </div>
+
+      <!-- DevOps -->
+      <div class="course-item">
+        <div class="course-name">DevOps</div>
+        <div class="course-price">Rs. 34999/-</div>
+        <div class="course-desc">CI/CD pipelines, container orchestration & infrastructure automation.</div>
+        <div class="course-cert">Certified Course – Certificate Provided</div>
+        <div class="btn-row">
+          <button class="enroll-btn" onclick="enroll('DevOps')">Enroll</button>
+          <button class="register-btn" onclick="registerUPI(14999)">Register Now</button>
+        </div>
+      </div>
+
+      <div class="course-item">
+        <div class="course-name">Docker</div>
+        <div class="course-price">Rs. 32999/-</div>
+        <div class="course-desc">Learn Docker for containerization and deployments.</div>
+        <div class="course-cert">Certified Course – Certificate Provided</div>
+        <div class="btn-row">
+          <button class="enroll-btn" onclick="enroll('Docker')">Enroll</button>
+          <button class="register-btn" onclick="registerUPI(14999)">Register Now</button>
+        </div>
+      </div>
+
+      <div class="course-item">
+        <div class="course-name">Kubernetes</div>
+        <div class="course-price">Rs. 34999/-</div>
+        <div class="course-desc">Manage containerized applications at scale using Kubernetes.</div>
+        <div class="course-cert">Certified Course – Certificate Provided</div>
+        <div class="btn-row">
+          <button class="enroll-btn" onclick="enroll('Kubernetes')">Enroll</button>
+          <button class="register-btn" onclick="registerUPI(14999)">Register Now</button>
+        </div>
+      </div>
+
+      <!-- Embedded & Robotics -->
+      <div class="course-item">
+        <div class="course-name">Embedded Systems & IoT</div>
+        <div class="course-price">Rs. 24999/-</div>
+        <div class="course-desc">Microcontrollers, sensors, IoT applications and embedded projects.</div>
+        <div class="course-cert">Certified Course – Certificate Provided</div>
+        <div class="btn-row">
+          <button class="enroll-btn" onclick="enroll('Embedded Systems & IoT')">Enroll</button>
+          <button class="register-btn" onclick="registerUPI(9999)">Register Now</button>
+        </div>
+      </div>
+
+      <div class="course-item">
+        <div class="course-name">Robotics</div>
+        <div class="course-price">Rs. 19999/-</div>
+        <div class="course-desc">Design, build and program robots for automation projects.</div>
+        <div class="course-cert">Certified Course – Certificate Provided</div>
+        <div class="btn-row">
+          <button class="enroll-btn" onclick="enroll('Robotics')">Enroll</button>
+          <button class="register-btn" onclick="registerUPI(9999)">Register Now</button>
+        </div>
+      </div>
+
+      <div class="course-item">
+        <div class="course-name">PCB Design</div>
+        <div class="course-price">Rs. 12999/-</div>
+        <div class="course-desc">Learn schematic design, PCB layout, and manufacturing process.</div>
+        <div class="course-cert">Certified Course – Certificate Provided</div>
+        <div class="btn-row">
+          <button class="enroll-btn" onclick="enroll('PCB Design')">Enroll</button>
+          <button class="register-btn" onclick="registerUPI(6999)">Register Now</button>
+        </div>
+      </div>
+
+      <!-- Design Tools -->
+      <div class="course-item">
+        <div class="course-name">AutoCAD</div>
+        <div class="course-price">Rs. 7999/-</div>
+        <div class="course-desc">Professional CAD design course.</div>
+        <div class="course-cert">Certified Course – Certificate Provided</div>
+        <div class="btn-row">
+          <button class="enroll-btn" onclick="enroll('AutoCAD')">Enroll</button>
+          <button class="register-btn" onclick="registerUPI(4999)">Register Now</button>
+        </div>
+      </div>
+
+      <div class="course-item">
+        <div class="course-name">Catia</div>
+        <div class="course-price">Rs. 10999/-</div>
+        <div class="course-desc">3D modeling and product design using Catia.</div>
+        <div class="course-cert">Certified Course – Certificate Provided</div>
+        <div class="btn-row">
+          <button class="enroll-btn" onclick="enroll('Catia')">Enroll</button>
+          <button class="register-btn" onclick="registerUPI(4999)">Register Now</button>
+        </div>
+      </div>
+
+      <div class="course-item">
+        <div class="course-name">Revit</div>
+        <div class="course-price">Rs. 10999/-</div>
+        <div class="course-desc">BIM modeling and architectural design with Revit.</div>
+        <div class="course-cert">Certified Course – Certificate Provided</div>
+        <div class="btn-row">
+          <button class="enroll-btn" onclick="enroll('Revit')">Enroll</button>
+          <button class="register-btn" onclick="registerUPI(4999)">Register Now</button>
+        </div>
+      </div>
+
+      <div class="course-item">
+        <div class="course-name">STAAD Pro</div>
+        <div class="course-price">Rs. 8999/-</div>
+        <div class="course-desc">Structural analysis and design using STAAD Pro.</div>
+        <div class="course-cert">Certified Course – Certificate Provided</div>
+        <div class="btn-row">
+          <button class="enroll-btn" onclick="enroll('STAAD Pro')">Enroll</button>
+          <button class="register-btn" onclick="registerUPI(4999)">Register Now</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer & WhatsApp -->
+  <footer>
+    <p>📧 info.hitl.hyd@gmail.com | 📞 9553650061 | 🌐 <a href="https://www.hitl.co.in" target="_blank">www.hitl.co.in</a></p>
+    <p>📍 Location: HITL Building, BN REDDY NAGAR Branch, HYDERABAD</p>
+    <div class="socials">
+      <a href="https://www.instagram.com/hitl.hyd/" target="_blank">Instagram</a> |
+      <a href="https://www.linkedin.com/company/hitl-hyd/" target="_blank">LinkedIn</a> |
+      <a href="https://www.youtube.com/@hitlprojects" target="_blank">YouTube</a> |
+      <a href="https://wa.me/919553650061" target="_blank">WhatsApp</a>
+    </div>
+    <p>© HITL Private Limited — All rights reserved</p>
+  </footer>
+</div>
+
+<!-- Floating WhatsApp -->
+<div class="whatsapp-float" onclick="window.open('https://wa.me/919553650061','_blank')">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
+</div>
+
+<script>
+  function enroll(course) {
+    const msg = `Hi, I am interested in the ${course} course. Please share details.`;
+    window.open(`https://wa.me/919553650061?text=${encodeURIComponent(msg)}`, '_blank');
+  }
+
+  function registerUPI(amount) {
+    const upiID = "hitlpayment@ibl";
+    window.location.href = `upi://pay?pa=${upiID}&pn=HITL&am=${amount}&cu=INR`;
+  }
+</script>
+</body>
+</html>
